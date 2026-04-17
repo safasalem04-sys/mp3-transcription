@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PulseScript - Transcription MP3</title>
+    <meta name="description" content="Application web elegante pour transcrire des fichiers MP3 en texte en quelques secondes." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Serif+Display:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="background-mesh" aria-hidden="true"></div>
+
+    <main class="app-shell">
+      <header class="hero">
+        <p class="pill">Render-ready</p>
+        <h1>PulseScript</h1>
+        <p class="tagline">
+          Charge ton MP3 avec un seul bouton, et recupere la transcription sans cle API.
+        </p>
+        <p class="hero-note">
+          Le modele se charge dans le navigateur au premier usage. Le premier lancement peut prendre un peu de temps.
+        </p>
+      </header>
+
+      <section class="card uploader-card">
+        <input type="file" id="audio-input" name="audio" accept=".mp3,audio/mpeg" hidden />
+        <button id="pick-btn" type="button" class="pick-btn">Charger un fichier MP3</button>
+        <p id="file-name" class="file-name">Aucun fichier selectionne</p>
+      </section>
+
+      <section class="card result-card">
+        <div class="result-head">
+          <h2>Transcription</h2>
+          <button id="copy-btn" type="button" disabled>Copier</button>
+        </div>
+        <p id="status" class="status">En attente d'un fichier...</p>
+        <pre id="output" class="output">Le texte apparaitra ici.</pre>
+      </section>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

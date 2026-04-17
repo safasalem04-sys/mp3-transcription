@@ -1,0 +1,17 @@
+{
+  "name": "mp3-transcription",
+  "version": "1.0.0",
+  "description": "Web app for MP3 transcription in the browser, deployable on Render",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
