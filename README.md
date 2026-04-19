@@ -1,12 +1,18 @@
-# PulseScript - Transcription MP3 Sans Cle API
+# PulseScript - Transcription Audio/Video Sans Cle API
 
-Application web elegante pour importer un fichier MP3 et obtenir sa transcription texte directement dans le navigateur.
+Application web elegante pour importer un fichier audio/video et obtenir sa transcription texte directement dans le navigateur.
 Le projet est pret pour un deploiement sur Render et ne demande aucune cle OpenAI.
 
 ## Pourquoi ca ne marche plus apres fermeture VS Code
 
 En local, quand tu fermes VS Code ou le terminal, le serveur Node s'arrete.
 Pour garder l'application accessible en permanence, il faut la deployer sur un hebergeur (ex: Render).
+
+## Acces Depuis iPhone
+
+- `localhost:3000` ne fonctionne pas sur iPhone (localhost pointe vers l'iPhone lui-meme).
+- Utilise l'URL publique Render apres deploiement.
+- En local uniquement: iPhone et PC doivent etre sur le meme Wi-Fi, puis ouvre `http://IP_DU_PC:3000`.
 
 ## Stack
 
@@ -38,7 +44,7 @@ Pour garder l'application accessible en permanence, il faut la deployer sur un h
 
 ### Bouton de deploiement (apres push GitHub)
 
-Lien direct pour ce repository:
+Lien direct pour ton repository:
 
 ```text
 https://render.com/deploy?repo=https://github.com/safasalem04-sys/mp3-transcription
@@ -66,8 +72,9 @@ Une fois deploye, Render te donne une URL publique (ex: `https://ton-app.onrende
 
 ## Limites Et Compromis
 
-- Fichiers MP3 uniquement cote interface
+- Upload autorise pour `audio/*` et `video/*`
 - Le modele Whisper se telecharge au premier usage
 - La premiere transcription est plus lente que les suivantes
 - Le modele `whisper-tiny` est leger et economique, mais moins precis qu'une API premium
 - Les performances dependent du navigateur et de la machine du visiteur
+- Certains codecs video/audio exotiques peuvent ne pas etre decodables par le navigateur

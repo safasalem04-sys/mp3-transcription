@@ -112,7 +112,13 @@ function transcribeInWorker(audio, language) {
 async function transcribeSelectedFile() {
   const file = input.files[0];
   if (!file) {
-    setStatus("Choisis un fichier MP3.", "error");
+    setStatus("Choisis un fichier audio ou video.", "error");
+    return;
+  }
+
+  const type = file.type || "";
+  if (!type.startsWith("audio/") && !type.startsWith("video/")) {
+    setStatus("Format non pris en charge. Choisis un fichier audio/video.", "error");
     return;
   }
 
@@ -120,7 +126,7 @@ async function transcribeSelectedFile() {
   pickBtn.disabled = true;
   copyBtn.disabled = true;
   outputEl.textContent = "";
-  setStatus("Preparation de l'audio...", "pending");
+  setStatus("Preparation du media...", "pending");
 
   try {
     const audio = await decodeAudioFile(file);
@@ -129,7 +135,7 @@ async function transcribeSelectedFile() {
     copyBtn.disabled = false;
     setStatus("Termine (auto)");
   } catch (error) {
-    setStatus(error.message, "error");
+    setStatus("Echec de lecture du fichier. Essaie un format audio/video plus standard (mp3, m4a, wav, mp4).", "error");
     outputEl.textContent = "La transcription a echoue.";
   } finally {
     pickBtn.disabled = false;
