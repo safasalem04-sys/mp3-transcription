@@ -90,6 +90,7 @@ function resampleAudio(samples, inputRate, targetRate) {
   const outputLength = Math.round(samples.length / ratio);
   const output = new Float32Array(outputLength);
 
+  // Algorithme de resampling optimisé avec interpolation linéaire
   for (let index = 0; index < outputLength; index += 1) {
     const position = index * ratio;
     const left = Math.floor(position);

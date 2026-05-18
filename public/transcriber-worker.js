@@ -3,7 +3,8 @@ import { pipeline, env } from "https://cdn.jsdelivr.net/npm/@xenova/transformers
 env.allowLocalModels = false;
 env.useBrowserCache = true;
 
-env.backends.onnx.wasm.numThreads = 1;
+// Optimisé pour Intel Core i7-8650U (8 threads logiques) - Performance maximale
+env.backends.onnx.wasm.numThreads = 8;
 
 env.backends.onnx.wasm.wasmPaths = "https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2/dist/";
 
@@ -34,8 +35,8 @@ self.onmessage = async (event) => {
     const result = await transcriber(event.data.audio, {
       language: event.data.language || null,
       task: "transcribe",
-      chunk_length_s: 30,
-      stride_length_s: 5,
+      chunk_length_s: 180,  // Gros chunks pour réduire les itérations (i7-8650U peut gérer)
+      stride_length_s: 3,   // Petit overlap pour meilleure couverture
       return_timestamps: false
     });
 
